@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portofolio — Abdurrohmannn</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#021024;            /* very dark blue */
+      --card:#06122a;          /* dark card */
+      --muted:#9fb1d9;
+      --white:#ffffff;
+      --neon:#00e5ff;          /* neon accent */
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      --maxwidth:1100px;
+    }
+
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(0,100,255,0.06), transparent),
+                  linear-gradient(180deg, var(--bg), #000);
+      color:var(--white);
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      line-height:1.5;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    header{
+      position:sticky;
+      top:0;
+      z-index:60;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(2,16,36,0.6), rgba(2,16,36,0.35));
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .nav-wrap{
+      max-width: var(--maxwidth);
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:var(--white);
+    }
+    .brand .logo{
+      width:44px;height:44px;border-radius:10px;background:
+      linear-gradient(135deg,var(--neon),#4cc9f0);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;
+      box-shadow:0 6px 18px rgba(0,229,255,0.08);
+      font-size:18px;
+    }
+    nav.primary{
+      display:flex;
+      gap:18px;
+      align-items:center;
+    }
+    nav.primary a{
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:600;
+      padding:8px 10px;
+      border-radius:8px;
+      transition:all .18s ease;
+    }
+    nav.primary a:hover, nav.primary a.active{
+      color:var(--white);
+      background: linear-gradient(90deg, rgba(0,229,255,0.06), rgba(76,201,240,0.03));
+      box-shadow: 0 4px 18px rgba(0,229,255,0.04);
+      transform:translateY(-2px);
+    }
+
+    /* hamburger (mobile) */
+    .hamburger{
+      display:none;
+      width:44px;height:44px;border-radius:10px;background:var(--glass);
+      border:1px solid rgba(255,255,255,0.03);align-items:center;justify-content:center;
+      cursor:pointer;
+    }
+    .hamburger .bar{width:20px;height:2px;background:var(--white);position:relative;border-radius:2px}
+    .hamburger .bar::before,.hamburger .bar::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--white);border-radius:2px}
+    .hamburger .bar::before{top:-6px} .hamburger .bar::after{top:6px}
+
+    /* mobile menu */
+    .mobile-menu{
+      display:none;
+      position:absolute;
+      right:20px;
+      top:68px;
+      background: linear-gradient(180deg, rgba(6,18,42,0.95), rgba(6,18,42,0.9));
+      border:1px solid rgba(255,255,255,0.03);
+      padding:12px;
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    .mobile-menu a{
+      display:block;
+      color:var(--muted);
+      padding:8px 10px;
+      text-decoration:none;
+      border-radius:8px;
+    }
+    .mobile-menu a:hover{color:var(--white);background:rgba(0,229,255,0.03)}
+
+    /* ---------- MAIN LAYOUT ---------- */
+    main{max-width:var(--maxwidth);margin:40px auto;padding:0 20px;}
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+      margin-bottom:32px;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:28px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 30px rgba(2,8,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .hero h1{
+      font-size:clamp(24px,4.2vw,38px);
+      line-height:1.05;
+      color:var(--white);
+      margin-bottom:10px;
+    }
+    .typing{
+      color:var(--neon);
+      font-weight:700;
+      display:inline-block;
+      border-right:2px solid rgba(0,229,255,0.8);
+      padding-right:6px;
+      margin-left:8px;
+      animation:blink 0.8s infinite;
+    }
+    @keyframes blink{50%{border-color:transparent}}
+
+    .hero p{color:var(--muted); margin-bottom:18px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+      background:linear-gradient(90deg,var(--neon),#4cc9f0);color:#002; font-weight:700;
+      text-decoration:none;border:none;cursor:pointer;box-shadow:0 10px 30px rgba(0,229,255,0.06);
+      transition: transform .14s ease;
+    }
+    .btn.secondary{
+      background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.06);
+      box-shadow:none;font-weight:600;
+    }
+    .btn:active{transform:translateY(1px)}
+
+    /* Profile visual */
+    .profile{
+      display:flex;align-items:center;gap:14px;
+      padding:18px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .avatar{
+      width:110px;height:110px;border-radius:18px;overflow:hidden;flex-shrink:0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      border: 2px solid rgba(255,255,255,0.03);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .who h3{color:var(--white);margin-bottom:4px}
+    .who p{color:var(--muted);font-size:14px}
+
+    /* Cards area */
+    .section-title{font-size:18px;margin-bottom:12px;color:var(--white)}
+    .card-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin-top:14px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .project-thumb{width:100%;height:160px;border-radius:8px;overflow:hidden;margin-bottom:12px}
+    .project-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* Skills */
+    .skills{display:flex;gap:12px;flex-wrap:wrap}
+    .skill{
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);
+      display:flex;gap:10px;align-items:center;color:var(--muted);
+      transition:transform .12s;
+    }
+    .skill:hover{transform:translateY(-6px);color:var(--white)}
+    .skill svg{width:20px;height:20px;flex-shrink:0}
+
+    /* Contact */
+    .contact-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .whatsapp{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;
+      background:linear-gradient(90deg,#25D366,#1EBEA4);color:#012; font-weight:700;text-decoration:none;
+    }
+
+    footer{margin:48px 0 20px;color:var(--muted);text-align:center;font-size:14px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr 320px}
+      .card-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:720px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .profile{justify-content:center;text-align:center;flex-direction:column}
+      .brand .logo{width:40px;height:40px}
+      nav.primary{display:none}
+      .hamburger{display:flex}
+      .mobile-menu{right:12px;left:12px}
+      .card-grid{grid-template-columns:1fr}
+      .hero-card{padding:18px}
+    }
+
+    /* small touches */
+    a[role="button"]{cursor:pointer}
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <a class="brand" href="#hero">
+        <div class="logo">A
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+        </div>
+        <div>
+          <div style="font-weight:700">Abdurrohman</div>
+          <div style="font-size:12px;color:var(--muted)">Portofolio</div>
+        </div>
+      </a>
+
+      <nav class="primary" aria-label="Primary">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">Tentang</a>
+        <a href="#projects" class="nav-link">Projek</a>
+        <a href="#skills" class="nav-link">Keahlian</a>
+        <a href="#contact" class="nav-link">Kontak</a>
+      </nav>
+
+      <button class="hamburger" aria-label="Buka menu" aria-expanded="false" id="hambtn">
+        <div class="bar"></div>
+      </button>
+
+      <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <a href="#hero">Home</a>
+        <a href="#about">Tentang</a>
+        <a href="#projects">Projek</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#contact">Kontak</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section id="hero" class="hero-card hero" aria-label="Hero">
+      <div>
+        <h1>Halo, saya <span style="color:var(--neon)">Thoyyib</span>.<span class="typing" id="typing"></span></h1>
+        <p>Saya belajar web development. Saya suka membuat antarmuka yang bersih, rapi, dan fungsional. Berikut beberapa projek & keahlian saya.</p>
+
+        <div class="cta-row">
+          <a class="btn" href="#projects">Lihat Projek</a>
+          <a class="btn secondary" href="#about">Tentang Saya</a>
+        </div>
+
+        <!-- quick highlights -->
+        <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+          <div style="padding:10px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.02)">
+            <div style="font-weight:700;color:var(--neon)">5+</div>
+            <div style="font-size:13px;color:var(--muted)">Projek</div>
+          </div>
+          <div style="padding:10px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.02)">
+            <div style="font-weight:700;color:var(--neon)">HTML / CSS / JS</div>
+            <div style="font-size:13px;color:var(--muted)">Tech</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="profile">
+        <div class="avatar" aria-hidden="true">
+          <!-- ganti src dengan foto profilmu -->
+          <img src="sayaaa.jpg" alt="Foto profil saya">
+        </div>
+        <div class="who">
+          <h3>Abdurrohman</h3>
+          <p>Santri • Pembelajar • Web Developer Pemula</p>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a class="btn" href="#contact">Hubungi</a>
+            <a class="btn secondary" href="#projects">Portofolio</a>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="card" aria-labelledby="aboutTitle" style="margin-top:18px">
+      <h2 id="aboutTitle" class="section-title">Tentang Saya</h2>
+      <p style="color:var(--muted);">Saya sedang belajar front-end development dengan fokus pada HTML, CSS, dan JavaScript. Saya suka membuat antarmuka yang sederhana, cepat, dan mudah digunakan. Saat ini saya mengerjakan beberapa proyek kecil sebagai latihan dan untuk menambah pengalaman.</p>
+      <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <h4 style="color:var(--white);margin-bottom:6px">Apa yang saya kerjakan</h4>
+          <ul style="color:var(--muted);list-style:none;padding-left:0">
+            <li>• Website responsif</li>
+            <li>• Interaksi UI sederhana</li>
+            <li>• Prototyping & desain dasar</li>
+          </ul>
+        </div>
+        <div style="flex:1;min-width:200px">
+          <h4 style="color:var(--white);margin-bottom:6px">Tujuan</h4>
+          <p style="color:var(--muted)">Mengembangkan kemampuan dan menerapkan project nyata untuk portofolio, serta belajar praktik terbaik dalam web development.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="card" style="margin-top:18px">
+      <h2 class="section-title">Projek</h2>
+
+      <div class="card-grid">
+        <!-- Project 1 -->
+        <article class="card" aria-labelledby="p1">
+          <div class="project-thumb"><img src="https://picsum.photos/800/500?random=21" alt="Projek 1"></div>
+          <h3 id="p1">Mini Game Klik Cepat</h3>
+          <p style="color:var(--muted)">Game sederhana untuk melatih kecepatan klik. Dibuat menggunakan HTML, CSS, dan JavaScript.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Demo</a>
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Kode</a>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card" aria-labelledby="p2">
+          <div class="project-thumb"><img src="https://picsum.photos/800/500?random=22" alt="Projek 2"></div>
+          <h3 id="p2">Jadwal Harian</h3>
+          <p style="color:var(--muted)">Aplikasi catatan kegiatan harian responsive untuk membantu manajemen waktu.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Demo</a>
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Kode</a>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card" aria-labelledby="p3">
+          <div class="project-thumb"><img src="https://picsum.photos/800/500?random=23" alt="Projek 3"></div>
+          <h3 id="p3">Portfolio Static</h3>
+          <p style="color:var(--muted)">Situs portofolio statis menggunakan HTML & CSS, fokus pada desain minimalis.</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Demo</a>
+            <a class="btn secondary" href="#" onclick="openDemo(event,'https://example.com')">Kode</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card" style="margin-top:18px">
+      <h2 class="section-title">Keahlian</h2>
+      <div class="skills">
+        <div class="skill" title="HTML">
+          <!-- simple SVG icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 3h18l-1.7 19.1L12 21l-7.3 1.1L3 3z" fill="#ff764a"/></svg>
+          <div>
+            <div style="font-weight:600;color:var(--white)">HTML</div>
+            <div style="font-size:12px;color:var(--muted)">Struktur & Semantik</div>
+          </div>
+        </div>
+
+        <div class="skill" title="CSS">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3l2 18 8 2 8-2 2-18H2z" fill="#2965f1"/></svg>
+          <div>
+            <div style="font-weight:600;color:var(--white)">CSS</div>
+            <div style="font-size:12px;color:var(--muted)">Layout & Responsiveness</div>
+          </div>
+        </div>
+
+        <div class="skill" title="JavaScript">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2h20v20H2z" fill="#f0db4f"/></svg>
+          <div>
+            <div style="font-weight:600;color:var(--white)">JavaScript</div>
+            <div style="font-size:12px;color:var(--muted)">Interaktivitas</div>
+          </div>
+        </div>
+
+        <div class="skill" title="Responsive Design">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="3" fill="#9fb1d9"/></svg>
+          <div>
+            <div style="font-weight:600;color:var(--white)">Responsive</div>
+            <div style="font-size:12px;color:var(--muted)">Mobile-first</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card" style="margin-top:18px">
+      <h2 class="section-title">Kontak</h2>
+      <p style="color:var(--muted)">Butuh bantuan, kolaborasi, atau ingin melihat kode saya? Hubungi saya lewat WhatsApp atau email.</p>
+
+      <div class="contact-row" style="margin-top:12px">
+        <!-- Ganti NOMORWA dengan nomor tanpa + atau tanda (contoh: 6281234567890) -->
+        <a class="whatsapp" href="https://wa.me/6282191842745" target="_blank" rel="noopener">💬 Chat via WhatsApp</a>
+
+        <div style="color:var(--muted)">Email: <strong style="color:var(--white)">thoyyib@example.com</strong></div>
+      </div>
+
+      <div style="margin-top:14px">
+        <form id="contactForm" onsubmit="handleSubmit(event)" style="display:flex;flex-direction:column;gap:8px;max-width:560px">
+          <input type="text" name="name" placeholder="Nama" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)">
+          <input type="email" name="email" placeholder="Email" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)">
+          <textarea name="message" rows="4" placeholder="Pesan" required style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white)"></textarea>
+          <div style="display:flex;gap:10px">
+            <button class="btn" type="submit">Kirim Pesan</button>
+            <button class="btn secondary" type="reset">Reset</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer>© <span id="year"></span> Thoyyib — Dibuat dengan HTML, CSS & JavaScript</footer>
+  </main>
+
+  <script>
+    /* ---------- Utility & Initialization ---------- */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const hambtn = document.getElementById('hambtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hambtn.addEventListener('click', () => {
+      const expanded = hambtn.getAttribute('aria-expanded') === 'true';
+      hambtn.setAttribute('aria-expanded', !expanded);
+      mobileMenu.style.display = expanded ? 'none' : 'block';
+      mobileMenu.setAttribute('aria-hidden', expanded ? 'true' : 'false');
+    });
+
+    // Close mobile menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileMenu.style.display = 'none';
+      hambtn.setAttribute('aria-expanded','false');
+      mobileMenu.setAttribute('aria-hidden','true');
+    }));
+
+    // Simple typing effect (hero)
+    const typingEl = document.getElementById('typing');
+    const phrases = ["Web Developer", "Creator", "Problem Solver"];
+    let pi = 0, ti = 0, forward = true;
+    function typeLoop(){
+      const text = phrases[pi];
+      if(forward){
+        typingEl.textContent = text.slice(0, ++ti);
+        if(ti === text.length){ forward = false; setTimeout(typeLoop,900); return; }
+      } else {
+        typingEl.textContent = text.slice(0, --ti);
+        if(ti === 0){ forward = true; pi = (pi+1)%phrases.length; setTimeout(typeLoop,200); return; }
+      }
+      setTimeout(typeLoop, 80);
+    }
+    typeLoop();
+
+    // Smoothly highlight current section in nav on scroll
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = ['hero','about','projects','skills','contact'].map(id => document.getElementById(id));
+    function onScroll(){
+      const top = window.scrollY + window.innerHeight * 0.18;
+      let current = sections[0];
+      for(const s of sections){
+        if(s.offsetTop <= top) current = s;
+      }
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+current.id));
+    }
+    window.addEventListener('scroll', onScroll);
+    onScroll();
+
+    // demo helper (replace with real links)
+    function openDemo(e,u){
+      e.preventDefault();
+      alert('Contoh demo/kode: ' + u + '\nGanti link ini dengan URL projekmu.');
+    }
+
+    // Contact form handler (demo)
+    function handleSubmit(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      // Di sini kamu bisa kirim ke server (fetch) — untuk demo kita tampilkan notifikasi:
+      alert('Terima kasih ' + data.get('name') + '! Pesanmu sudah tercatat (demo).');
+      form.reset();
+    }
+
+    // Accessibility: close mobile menu on ESC
+    document.addEventListener('keydown', (ev) => {
+      if(ev.key === 'Escape'){
+        mobileMenu.style.display = 'none';
+        hambtn.setAttribute('aria-expanded','false');
+        mobileMenu.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Optional: improve image loading on slow devices
+    document.querySelectorAll('img').forEach(img => {
+      img.loading = 'lazy';
+    });
+  </script>
+</body>
+</html>
